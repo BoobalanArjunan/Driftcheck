@@ -37,6 +37,12 @@ env/
 .coverage
 htmlcov/
 
+# Audio / binary outputs
+*.wav
+*.flac
+*.mp3
+*.ogg
+
 # IDE / Editors
 .vscode/
 .idea/
