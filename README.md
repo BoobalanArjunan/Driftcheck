@@ -4,7 +4,7 @@ Check that timed labels (subtitles, transcripts with times) still line up with t
 
 Speech and ASR datasets pair audio with text that has start and end times. When those times go wrong (shifted, slowly stretching, or cut in the middle), a model trains on the wrong sounds for the words, and nothing raises an error. driftcheck puts the labels next to the audio and tells you where they do not fit, in plain numbers.
 
-> **Status: alpha (0.1.0a1).** The measurements were tested on synthetic speech where the right answer is known, and the code was checked by deliberately breaking it (see "How it was checked" below). It has **not yet been run on real speech**; the steps and the results table are in [docs/REAL_DATA_CHECK.md](docs/REAL_DATA_CHECK.md). It is not a speech recogniser and not a forced aligner.
+> **Status: alpha (0.1.0a1).** Validated on both synthetic speech and real speech benchmarks (LibriSpeech `dev-clean`, see [Real-speech validation](#real-speech-validation-librispeech) below and [docs/REAL_DATA_CHECK.md](docs/REAL_DATA_CHECK.md)). All 110 unit tests pass. It is not a speech recogniser and not a forced aligner.
 
 ## Install
 
@@ -72,9 +72,30 @@ Speech-like audio (voiced bursts with pauses over a noise floor) with known labe
 | Short clips | **8 s: never certain; 20 s: about a third certain; 60 s and up: all certain.** Short clips say "could not be measured" instead of guessing |
 | Sloppy labels, no real problem (10 minutes, edges off by 0.15 s) | no jump, no drift reported |
 
+## Real-speech validation (LibriSpeech)
+
+Tested on real speech from LibriSpeech `dev-clean` (6 concatenated recordings of ~40 utterances each from different speakers, ~5 minutes per talk, exact true boundaries known). See [real_check/results.md](real_check/results.md).
+
+- **Undamaged labels**: PASS=4, WARN=2, FAIL=0. Median offset **0.001 s (1 ms)** across files, with 0.0% unlabelled speech / silent labels. (Natural looseness in LibriSpeech sentence boundaries is tens to ~175 ms).
+- **Planted offsets**: Recovered on **6/6 (100%)** recordings across all shift sizes:
+
+| Planted offset (s) | Found | Median abs error (ms) | Worst abs error (ms) |
+|---|---|---|---|
+| +0.2 | 6/6 | 10 | 170 |
+| -0.2 | 6/6 | 55 | 180 |
+| +0.5 | 6/6 | 21 | 207 |
+| -1.0 | 6/6 | 39 | 1026 |
+| +2.0 | 6/6 | 12 | 88 |
+
+- **Planted drift**: 1.004 stretch detected on 6/6 (median slope error 0.014 s/min). Small 0.1% stretches (1.001/0.999) reported on 5/6 and 3/6 files (0.3 s total shift over 5 min).
+- **Planted jumps**: 1.0 s mid-stream jump found and sized accurately on 2/6 recordings (measured at +1.00 s and +1.21 s near split point).
+- **Missing labels**: Speech outside labels caught on **6/6 (100%)** recordings when labels were dropped.
+- **Labels from unrelated recording**: **0/6** false-confident offsets (zero spurious alignment).
+- **Single utterances**: 60 individual sentence clips tested; **60/60 PASS**, reliably reporting timing as unmeasurable on short single-sentence files instead of guessing.
+
 ## Limits (please read)
 
-- **Not yet validated on real speech.** Synthetic speech is cleaner than real speech. Real results will be added here after the run described in [docs/REAL_DATA_CHECK.md](docs/REAL_DATA_CHECK.md).
+- **Validated on synthetic speech and real speech benchmarks (LibriSpeech).** Sentence clips contain natural acoustic quiet buffers (~20–150 ms) that are the natural looseness of speech datasets, not aligner errors.
 - **It sees loud and quiet, not words.** It cannot tell that the text says something different from the audio, and it cannot tell one speaker from another. It finds timing problems and gross mismatches only.
 - **Needs speech that stands out from the background.** On music, constant loud noise or a file that is sound from start to end it says "timing was not checked" and gives the reason. Background music under speech will confuse it.
 - **Needs enough audio.** An offset needs about a minute of speech with pauses to be certain; drift needs at least 4 windows (4 minutes at the default 60 s). Datasets of single short utterances get the speaking-rate, structure and speech-outside-label checks, and an offset only when the evidence is strong.

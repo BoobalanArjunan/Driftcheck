@@ -1,0 +1,4 @@
+file,verdict,duration_s,n_labels,timing_measured,offset_s,offset_start_s,offset_end_s,drift_ms_per_min,agreement_score,unlabelled_speech_share,silent_label_share,findings
+audio_clean.wav,FAIL,254.08,40,True,0.025,0.415,-0.365,-355.0,0.647,0.0,0.0,drift; jump
+audio_delayed_labels.wav,FAIL,254.08,40,True,-0.566,-0.171,-0.962,-352.1,0.649,0.0,0.0,drift; jump
+audio_subtitles_late.wav,FAIL,254.08,40,True,-1.149,-0.838,-1.46,-288.8,0.645,0.129,0.0,drift; jump; unlabelled-speech

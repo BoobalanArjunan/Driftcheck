@@ -1,0 +1,8 @@
+file,level,code,at_s,message
+audio_clean.wav,WARN,drift,,the labels drift against the audio: offset is +415 ms at the start and -365 ms at the end (-355 ms per minute). Multiplying the label times by about 0.99408 would remove the drift
+audio_clean.wav,FAIL,jump,120.0,"the offset suddenly changes by +710 ms near 120 s (a cut, an inserted section, or labels from two different versions)"
+audio_delayed_labels.wav,FAIL,drift,,the labels drift against the audio: offset is -171 ms at the start and -962 ms at the end (-352 ms per minute). Multiplying the label times by about 0.99413 would remove the drift
+audio_delayed_labels.wav,FAIL,jump,120.0,"the offset suddenly changes by +690 ms near 120 s (a cut, an inserted section, or labels from two different versions)"
+audio_subtitles_late.wav,FAIL,drift,,the labels drift against the audio: offset is -838 ms at the start and -1.46 s at the end (-289 ms per minute). Multiplying the label times by about 0.99519 would remove the drift
+audio_subtitles_late.wav,FAIL,jump,120.0,"the offset suddenly changes by +595 ms near 120 s (a cut, an inserted section, or labels from two different versions)"
+audio_subtitles_late.wav,WARN,unlabelled-speech,234.66,13% of the sound (18 s in 29 stretches) is outside every label; longest: 0.9 s at 234.7 s; this may be a result of the offset above

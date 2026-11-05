@@ -1,0 +1,19 @@
+driftcheck verdict: FAIL
+3 files: 0 pass, 0 warn, 3 fail
+timing could be measured on 3 of 3 files (the rest are too short, too quiet or have no labels)
+
+audio_clean.wav: FAIL (254.1 s, 40 labels)
+  WARN the labels drift against the audio: offset is +415 ms at the start and -365 ms at the end (-355 ms per minute). Multiplying the label times by about 0.99408 would remove the drift
+  FAIL the offset suddenly changes by +710 ms near 120 s (a cut, an inserted section, or labels from two different versions)
+
+audio_delayed_labels.wav: FAIL (254.1 s, 40 labels)
+  FAIL the labels drift against the audio: offset is -171 ms at the start and -962 ms at the end (-352 ms per minute). Multiplying the label times by about 0.99413 would remove the drift
+  FAIL the offset suddenly changes by +690 ms near 120 s (a cut, an inserted section, or labels from two different versions)
+
+audio_subtitles_late.wav: FAIL (254.1 s, 40 labels)
+  FAIL the labels drift against the audio: offset is -838 ms at the start and -1.46 s at the end (-289 ms per minute). Multiplying the label times by about 0.99519 would remove the drift
+  FAIL the offset suddenly changes by +595 ms near 120 s (a cut, an inserted section, or labels from two different versions)
+  WARN 13% of the sound (18 s in 29 stretches) is outside every label; longest: 0.9 s at 234.7 s; this may be a result of the offset above
+
+
+How to read this: 'offset' is the number of seconds to ADD to the label times to match the audio. It is found by lining up where the labels say there is speech with where the audio has sound, using a simple energy detector (no speech model). It works when speech stands out from the background and needs a minute or more of audio to be certain; on short clips it says 'could not be measured' instead of guessing. A PASS means none of these checks found a problem, not that every label is right.
