@@ -43,6 +43,9 @@ htmlcov/
 *.mp3
 *.ogg
 
+# Scratch / temp files
+scratch/
+
 # IDE / Editors
 .vscode/
 .idea/

@@ -1,0 +1,226 @@
+{
+  "verdict": "FAIL",
+  "settings": {
+    "warn_s": 0.15,
+    "fail_s": 0.5,
+    "window_s": 60.0,
+    "max_offset_s": 5.0
+  },
+  "notes": [],
+  "note": "How to read this: 'offset' is the number of seconds to ADD to the label times to match the audio. It is found by lining up where the labels say there is speech with where the audio has sound, using a simple energy detector (no speech model). It works when speech stands out from the background and needs a minute or more of audio to be certain; on short clips it says 'could not be measured' instead of guessing. A PASS means none of these checks found a problem, not that every label is right.",
+  "files": [
+    {
+      "name": "audio_clean.wav",
+      "verdict": "FAIL",
+      "duration_s": 254.08,
+      "n_labels": 40,
+      "timing_measured": true,
+      "offset_s": 0.025,
+      "offset_start_s": 0.415,
+      "offset_end_s": -0.365,
+      "drift_s_per_min": -0.355,
+      "agreement_score": 0.647,
+      "suggested_scale": 0.994083,
+      "jumps": [
+        {
+          "at_s": 120.0,
+          "step_s": 0.71
+        }
+      ],
+      "unlabelled_speech_share": 0.0,
+      "silent_label_share": 0.0,
+      "findings": [
+        {
+          "level": "WARN",
+          "code": "drift",
+          "message": "the labels drift against the audio: offset is +415 ms at the start and -365 ms at the end (-355 ms per minute). Multiplying the label times by about 0.99408 would remove the drift",
+          "at_s": null
+        },
+        {
+          "level": "FAIL",
+          "code": "jump",
+          "message": "the offset suddenly changes by +710 ms near 120 s (a cut, an inserted section, or labels from two different versions)",
+          "at_s": 120.0
+        }
+      ],
+      "windows": [
+        {
+          "start_s": 0.0,
+          "end_s": 60.0,
+          "offset_s": 0.26,
+          "score": 0.712,
+          "confident": true,
+          "reason": ""
+        },
+        {
+          "start_s": 60.0,
+          "end_s": 120.0,
+          "offset_s": -0.12,
+          "score": 0.603,
+          "confident": true,
+          "reason": ""
+        },
+        {
+          "start_s": 120.0,
+          "end_s": 180.0,
+          "offset_s": 0.24,
+          "score": 0.655,
+          "confident": true,
+          "reason": ""
+        },
+        {
+          "start_s": 180.0,
+          "end_s": 240.0,
+          "offset_s": -0.11,
+          "score": 0.638,
+          "confident": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "name": "audio_delayed_labels.wav",
+      "verdict": "FAIL",
+      "duration_s": 254.08,
+      "n_labels": 40,
+      "timing_measured": true,
+      "offset_s": -0.566,
+      "offset_start_s": -0.171,
+      "offset_end_s": -0.962,
+      "drift_s_per_min": -0.3521,
+      "agreement_score": 0.649,
+      "suggested_scale": 0.994132,
+      "jumps": [
+        {
+          "at_s": 120.0,
+          "step_s": 0.69
+        }
+      ],
+      "unlabelled_speech_share": 0.0,
+      "silent_label_share": 0.0,
+      "findings": [
+        {
+          "level": "FAIL",
+          "code": "drift",
+          "message": "the labels drift against the audio: offset is -171 ms at the start and -962 ms at the end (-352 ms per minute). Multiplying the label times by about 0.99413 would remove the drift",
+          "at_s": null
+        },
+        {
+          "level": "FAIL",
+          "code": "jump",
+          "message": "the offset suddenly changes by +690 ms near 120 s (a cut, an inserted section, or labels from two different versions)",
+          "at_s": 120.0
+        }
+      ],
+      "windows": [
+        {
+          "start_s": 0.0,
+          "end_s": 60.0,
+          "offset_s": -0.3375,
+          "score": 0.706,
+          "confident": true,
+          "reason": ""
+        },
+        {
+          "start_s": 60.0,
+          "end_s": 120.0,
+          "offset_s": -0.7,
+          "score": 0.592,
+          "confident": true,
+          "reason": ""
+        },
+        {
+          "start_s": 120.0,
+          "end_s": 180.0,
+          "offset_s": -0.36,
+          "score": 0.655,
+          "confident": true,
+          "reason": ""
+        },
+        {
+          "start_s": 180.0,
+          "end_s": 240.0,
+          "offset_s": -0.71,
+          "score": 0.643,
+          "confident": true,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "name": "audio_subtitles_late.wav",
+      "verdict": "FAIL",
+      "duration_s": 254.08,
+      "n_labels": 40,
+      "timing_measured": true,
+      "offset_s": -1.149,
+      "offset_start_s": -0.838,
+      "offset_end_s": -1.46,
+      "drift_s_per_min": -0.2888,
+      "agreement_score": 0.645,
+      "suggested_scale": 0.995188,
+      "jumps": [
+        {
+          "at_s": 120.0,
+          "step_s": 0.595
+        }
+      ],
+      "unlabelled_speech_share": 0.129,
+      "silent_label_share": 0.0,
+      "findings": [
+        {
+          "level": "FAIL",
+          "code": "drift",
+          "message": "the labels drift against the audio: offset is -838 ms at the start and -1.46 s at the end (-289 ms per minute). Multiplying the label times by about 0.99519 would remove the drift",
+          "at_s": null
+        },
+        {
+          "level": "FAIL",
+          "code": "jump",
+          "message": "the offset suddenly changes by +595 ms near 120 s (a cut, an inserted section, or labels from two different versions)",
+          "at_s": 120.0
+        },
+        {
+          "level": "WARN",
+          "code": "unlabelled-speech",
+          "message": "13% of the sound (18 s in 29 stretches) is outside every label; longest: 0.9 s at 234.7 s; this may be a result of the offset above",
+          "at_s": 234.66
+        }
+      ],
+      "windows": [
+        {
+          "start_s": 0.0,
+          "end_s": 60.0,
+          "offset_s": -0.9425,
+          "score": 0.696,
+          "confident": true,
+          "reason": ""
+        },
+        {
+          "start_s": 60.0,
+          "end_s": 120.0,
+          "offset_s": -1.275,
+          "score": 0.591,
+          "confident": true,
+          "reason": ""
+        },
+        {
+          "start_s": 120.0,
+          "end_s": 180.0,
+          "offset_s": -0.96,
+          "score": 0.654,
+          "confident": true,
+          "reason": ""
+        },
+        {
+          "start_s": 180.0,
+          "end_s": 240.0,
+          "offset_s": -1.24,
+          "score": 0.636,
+          "confident": true,
+          "reason": ""
+        }
+      ]
+    }
+  ]
+}

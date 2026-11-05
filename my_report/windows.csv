@@ -1,0 +1,13 @@
+file,start_s,end_s,offset_s,agreement_score,confident,reason
+audio_clean.wav,0.0,60.0,0.26,0.712,True,
+audio_clean.wav,60.0,120.0,-0.12,0.603,True,
+audio_clean.wav,120.0,180.0,0.24,0.655,True,
+audio_clean.wav,180.0,240.0,-0.11,0.638,True,
+audio_delayed_labels.wav,0.0,60.0,-0.3375,0.706,True,
+audio_delayed_labels.wav,60.0,120.0,-0.7,0.592,True,
+audio_delayed_labels.wav,120.0,180.0,-0.36,0.655,True,
+audio_delayed_labels.wav,180.0,240.0,-0.71,0.643,True,
+audio_subtitles_late.wav,0.0,60.0,-0.9425,0.696,True,
+audio_subtitles_late.wav,60.0,120.0,-1.275,0.591,True,
+audio_subtitles_late.wav,120.0,180.0,-0.96,0.654,True,
+audio_subtitles_late.wav,180.0,240.0,-1.24,0.636,True,
