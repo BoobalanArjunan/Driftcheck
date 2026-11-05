@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "driftcheck"
+version = "0.1.0a1"
+description = "Check that timed labels (subtitles, transcripts with times) still line up with their audio: finds offsets, steady drift, sudden jumps, speech nobody labelled and labels over silence."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Boobalan Arjunan" }]
+maintainers = [{ name = "Boobalan Arjunan" }]
+keywords = ["audio", "speech", "asr", "subtitles", "alignment", "dataset", "quality-check", "data-validation", "machine-learning"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Multimedia :: Sound/Audio :: Analysis",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = ["numpy", "scipy", "soundfile"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://github.com/BoobalanArjunan/driftcheck"
+Issues = "https://github.com/BoobalanArjunan/driftcheck/issues"
+Source = "https://github.com/BoobalanArjunan/driftcheck"
+
+[project.scripts]
+driftcheck = "driftcheck.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
