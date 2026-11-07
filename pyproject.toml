@@ -9,8 +9,12 @@ description = "Check that timed labels (subtitles, transcripts with times) still
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Boobalan Arjunan" }]
-maintainers = [{ name = "Boobalan Arjunan" }]
+authors = [
+  { name = "Boobalan Arjunan", email = "boobalan_arjunan@composermind.com" },
+]
+maintainers = [
+  { name = "Boobalan Arjunan", email = "boobalan_arjunan@composermind.com" },
+]
 keywords = ["audio", "speech", "asr", "subtitles", "alignment", "dataset", "quality-check", "data-validation", "machine-learning"]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -26,9 +30,9 @@ dependencies = ["numpy", "scipy", "soundfile"]
 dev = ["pytest>=7"]
 
 [project.urls]
-Homepage = "https://github.com/BoobalanArjunan/driftcheck"
-Issues = "https://github.com/BoobalanArjunan/driftcheck/issues"
-Source = "https://github.com/BoobalanArjunan/driftcheck"
+Homepage = "https://github.com/BoobalanArjunan/Driftcheck"
+Issues = "https://github.com/BoobalanArjunan/Driftcheck/issues"
+Source = "https://github.com/BoobalanArjunan/Driftcheck"
 
 [project.scripts]
 driftcheck = "driftcheck.cli:main"
@@ -38,3 +42,4 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]
