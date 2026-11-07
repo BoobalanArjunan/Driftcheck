@@ -4,7 +4,7 @@ Check that timed labels (subtitles, transcripts with times) still line up with t
 
 Speech and ASR datasets pair audio with text that has start and end times. When those times go wrong (shifted, slowly stretching, or cut in the middle), a model trains on the wrong sounds for the words, and nothing raises an error. driftcheck puts the labels next to the audio and tells you where they do not fit, in plain numbers.
 
-> **Status: alpha (0.1.0a1).** Validated on both synthetic speech and real speech benchmarks (LibriSpeech `dev-clean`, see [Real-speech validation](#real-speech-validation-librispeech) below and [docs/REAL_DATA_CHECK.md](docs/REAL_DATA_CHECK.md)). All 110 unit tests pass. It is not a speech recogniser and not a forced aligner.
+> **Status: alpha (0.1.0).** Validated on both synthetic speech and real speech benchmarks (LibriSpeech `dev-clean`, see [Real-speech validation](#real-speech-validation-librispeech) below and [docs/REAL_DATA_CHECK.md](docs/REAL_DATA_CHECK.md)). All 110 unit tests pass. It is not a speech recogniser and not a forced aligner.
 
 ## Install
 
