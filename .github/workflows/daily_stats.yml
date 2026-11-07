@@ -24,3 +24,4 @@ jobs:
           NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL || 'boobalan.it@gmail.com' }}
         run: |
           python scripts/send_daily_stats.py
+

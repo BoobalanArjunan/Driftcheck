@@ -205,7 +205,7 @@ def test_cli_many_files_summary_lists_the_problem_files_only(case, tmp_path, cap
 def test_cli_version(capsys):
     with pytest.raises(SystemExit) as e:
         cli.main(["--version"])
-    assert e.value.code == 0 and "driftcheck 0.1.0a1" in capsys.readouterr().out
+    assert e.value.code == 0 and "driftcheck 0.1.0" in capsys.readouterr().out
 
 
 def test_cli_window_option_changes_the_windows(case, tmp_path):
