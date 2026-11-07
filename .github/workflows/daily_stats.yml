@@ -1,0 +1,26 @@
+name: Daily Analytics Email
+
+on:
+  schedule:
+    # Runs daily at 03:15 UTC (08:45 AM IST) - off-peak avoids runner congestion
+    - cron: '15 3 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions UI anytime
+
+jobs:
+  send-analytics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch Stats and Send Email
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL || 'boobalan.it@gmail.com' }}
+        run: |
+          python scripts/send_daily_stats.py
