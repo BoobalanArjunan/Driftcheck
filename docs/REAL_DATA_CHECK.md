@@ -5,7 +5,7 @@ This tests driftcheck on real speech. It answers: does driftcheck stay quiet on 
 ## What you need
 
 1. **LibriSpeech**: the `dev-clean` set from openslr.org/12 (about 340 MB, free). Unpack it. You should see folders like `LibriSpeech/dev-clean/84/121123/` with `.flac` files and a `*.trans.txt` file. driftcheck does not ship any speech.
-2. `pip install --pre driftcheck` (or work from a project checkout to get the `scripts/` folder).
+2. `pip install driftcheck-audio` (or work from a project checkout to get the `scripts/` folder).
 
 ## Part A: planted defects
 

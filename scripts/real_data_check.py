@@ -22,7 +22,7 @@ import soundfile as sf
 try:
     from driftcheck import Segment, check_file
 except ImportError:
-    sys.exit("driftcheck is not installed: pip install --pre driftcheck   (or pip install -e . from a checkout)")
+    sys.exit("driftcheck is not installed: pip install driftcheck-audio   (or pip install -e . from a checkout)")
 
 SR = 16000
 

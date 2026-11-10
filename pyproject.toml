@@ -3,7 +3,7 @@ requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "driftcheck"
+name = "driftcheck-audio"
 version = "0.1.0"
 description = "Check that timed labels (subtitles, transcripts with times) still line up with their audio: finds offsets, steady drift, sudden jumps, speech nobody labelled and labels over silence."
 readme = "README.md"

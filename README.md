@@ -4,15 +4,13 @@ Check that timed labels (subtitles, transcripts with times) still line up with t
 
 Speech and ASR datasets pair audio with text that has start and end times. When those times go wrong (shifted, slowly stretching, or cut in the middle), a model trains on the wrong sounds for the words, and nothing raises an error. driftcheck puts the labels next to the audio and tells you where they do not fit, in plain numbers.
 
-> **Status: alpha (0.1.0).** Validated on both synthetic speech and real speech benchmarks (LibriSpeech `dev-clean`, see [Real-speech validation](#real-speech-validation-librispeech) below and [docs/REAL_DATA_CHECK.md](docs/REAL_DATA_CHECK.md)). All 110 unit tests pass. It is not a speech recogniser and not a forced aligner.
+> **Status: 0.1.0.** Validated on both synthetic speech and real speech benchmarks (LibriSpeech `dev-clean`, see [Real-speech validation](#real-speech-validation-librispeech) below and [docs/REAL_DATA_CHECK.md](docs/REAL_DATA_CHECK.md)). All 110 unit tests pass. It is not a speech recogniser and not a forced aligner.
 
 ## Install
 
 ```
-pip install --pre driftcheck
+pip install driftcheck-audio
 ```
-
-(`--pre` is needed while it is an alpha release.)
 
 ## Use
 
@@ -102,7 +100,7 @@ Tested on real speech from LibriSpeech `dev-clean` (6 concatenated recordings of
 - **The first offset must be within 5 seconds** (`--max-offset`); after that the search follows the drift.
 - **Offset is measured to about 10 ms steps**, and real label edges are rarely that exact. Treat anything under about 50 ms as noise.
 - **The limits are judgement calls**: WARN at 0.15 s, FAIL at 0.5 s (`--warn`, `--fail`); speech outside labels or labels over silence WARN at 10% and FAIL at 40%; the speaking-rate check compares with the dataset's own median and is rough for languages where one character is a whole syllable or word.
-- **No fixing yet.** It tells you the number to add or the factor to multiply by; it does not rewrite your label files.
+- **Read-only checks.** It measures and reports the offset and drift rate; it does not modify your label files.
 - **The speech-outside-labels numbers are measured on the labels as given**, so a big offset also shows up there (the report says so).
 
 ## How it was checked
@@ -114,7 +112,7 @@ Tested on real speech from LibriSpeech `dev-clean` (6 concatenated recordings of
 
 - Forced aligners such as the [Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/) work out word timings from the text with an acoustic model and a pronunciation dictionary. driftcheck is lighter and answers a different question: given labels you already have, do they still fit the audio? It needs no model, dictionary or language.
 - [Lhotse](https://github.com/lhotse-speech/lhotse) and the NeMo toolkit have their own dataset-preparation and validation tools; driftcheck reads Lhotse supervisions so it can sit next to them.
-- [stemcheck](https://github.com/BoobalanArjunan/stemcheck), [mixforge](https://github.com/BoobalanArjunan/mixforge) and [splitsafe](https://github.com/BoobalanArjunan/splitsafe): sibling tools for music stems, test mixes and train/test leakage.
+- [stemcheck](https://github.com/BoobalanArjunan/Stemcheck), [mixforge-audio](https://github.com/BoobalanArjunan/Mix-Forge) and [splitsafe](https://github.com/BoobalanArjunan/splitsafe): sibling tools for music stems, test mixes and train/test leakage.
 
 ## Development
 
